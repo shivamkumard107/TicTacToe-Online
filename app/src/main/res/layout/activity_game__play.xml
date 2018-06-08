@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Game_PlayActivity">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/ll_yellow_turn"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_yellow_turn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:text="YELLOW"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/tv_yellow_turn"
+                android:src="@drawable/yellow" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_pointer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:src="@drawable/right_pointer" />
+
+        <LinearLayout
+            android:id="@+id/ll_red_turn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_red_turn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="RED"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+            <ImageView
+                android:layout_width="127dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_red_turn"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/red" />
+        </LinearLayout>
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/gl_game"
+            android:layout_width="368dp"
+            android:layout_height="360dp"
+            android:layout_below="@id/ll_red_turn"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/board"
+            app:columnCount="3"
+            app:rowCount="3"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+
+            <ImageView
+                android:id="@+id/iv_pt1"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_pt2"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="15dp" />
+
+            <ImageView
+                android:id="@+id/iv_pt3"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp" />
+
+            <ImageView
+                android:id="@+id/iv_pt4"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/iv_pt5"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="30dp" />
+
+            <ImageView
+                android:id="@+id/iv_pt6"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp" />
+
+            <ImageView
+                android:id="@+id/iv_pt7"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="35dp" />
+
+            <ImageView
+                android:id="@+id/iv_pt8"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="35dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/iv_pt9"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="35dp" />
+
+
+        </android.support.v7.widget.GridLayout>
+
+        <TextView
+            android:id="@+id/tv_host_devID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp"
+            android:text="Host Device ID" />
+
+    </RelativeLayout>
+
+</LinearLayout>
