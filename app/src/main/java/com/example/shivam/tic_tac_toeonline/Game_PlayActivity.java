@@ -186,7 +186,9 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
 
                 } else {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
-                    dialog.setMessage("Game not Connected");
+                    dialog.setTitle("Game not Connected");
+                    dialog.setMessage("Other user not joined.");
+                    dialog.setPositiveButton("ok", null);
                     dialog.show();
                 }
             }
@@ -300,7 +302,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(5)==0 && game.box.getBoxPosition().get(8)==0){
             redWon();
         }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(8)==0){
-            Toast.makeText(this, "Red WonYellow Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(6)==0){
             redWon();
         }
@@ -445,12 +447,14 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     private void yellowWon(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Yellow Won");
+        dialog.setPositiveButton("ok", null);
         dialog.show();
     }
     
     private void redWon(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Red Won");
+        dialog.setPositiveButton("ok", null);
         dialog.show();
     }
     @Override
