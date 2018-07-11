@@ -15,6 +15,18 @@ import com.google.firebase.database.ValueEventListener;
 
 public class GameActivity extends AppCompatActivity {
 
+
+
+
+   /* NO USE ...
+   * ...go to Game_playActivity.java */
+
+
+
+
+
+
+
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     Button btUpdate;

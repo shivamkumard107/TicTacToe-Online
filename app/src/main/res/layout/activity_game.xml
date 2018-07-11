@@ -7,6 +7,19 @@
     android:orientation="vertical"
     tools:context=".Game_PlayActivity">
 
+
+
+
+    <!-- NO USE
+       GO TO activity_game))play.xml-->
+
+    <!-- NO USE
+       GO TO activity_game))play.xml-->
+
+<!-- NO USE
+       GO TO activity_game))play.xml-->
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
