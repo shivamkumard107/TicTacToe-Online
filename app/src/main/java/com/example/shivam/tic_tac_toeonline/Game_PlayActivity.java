@@ -1,5 +1,7 @@
 package com.example.shivam.tic_tac_toeonline;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +36,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game__play);
 
@@ -51,11 +53,6 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         iv_box7 = (ImageView)findViewById(R.id.iv_pt7);
         iv_box8 = (ImageView)findViewById(R.id.iv_pt8);
         iv_box9 = (ImageView)findViewById(R.id.iv_pt9);
-
-
-
-
-
 
         iv_box2.setOnClickListener(this);
         iv_box3.setOnClickListener(this);
@@ -188,7 +185,9 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
                     }
 
                 } else {
-                    Toast.makeText(Game_PlayActivity.this, "Game is null", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+                    dialog.setMessage("Game not Connected");
+                    dialog.show();
                 }
             }
 
@@ -271,39 +270,39 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     public void checkWin() {
 
         if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(1)==1 && game.box.getBoxPosition().get(2)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(3)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(5)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(6)==1 && game.box.getBoxPosition().get(7)==1 && game.box.getBoxPosition().get(8)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(3)==1 && game.box.getBoxPosition().get(6)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(1)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(7)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(2)==1 && game.box.getBoxPosition().get(5)==1 && game.box.getBoxPosition().get(8)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(8)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }else if (game.box.getBoxPosition().get(2)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(6)==1){
-            Toast.makeText(this, "Yellow Won", Toast.LENGTH_SHORT).show();
+            yellowWon();
         }
 
         else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(1)==0 && game.box.getBoxPosition().get(2)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(3)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(5)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(6)==0 && game.box.getBoxPosition().get(7)==0 && game.box.getBoxPosition().get(8)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(3)==0 && game.box.getBoxPosition().get(6)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(1)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(7)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(5)==0 && game.box.getBoxPosition().get(8)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(8)==0){
             Toast.makeText(this, "Red WonYellow Won", Toast.LENGTH_SHORT).show();
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(6)==0){
-            Toast.makeText(this, "Red Won", Toast.LENGTH_SHORT).show();
+            redWon();
         }
 
         else if(game.box.getBoxPosition().get(0) != -1 &&
@@ -442,8 +441,18 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
-
-
+    
+    private void yellowWon(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+        dialog.setMessage("Yellow Won");
+        dialog.show();
+    }
+    
+    private void redWon(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+        dialog.setMessage("Red Won");
+        dialog.show();
+    }
     @Override
     public void onClick(View view) {
 
