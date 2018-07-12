@@ -1,7 +1,6 @@
 package com.example.shivam.tic_tac_toeonline;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +54,7 @@ public class JoinActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(JoinActivity.this, Game_PlayActivity.class);
                                 intent.putExtra("isHost", false);
-                                intent.putExtra("code", code);
+                                intent.putExtra("code", etCode.getText().toString());
 
 
                                 databaseReference.child(code).setValue(game);
@@ -64,11 +63,7 @@ public class JoinActivity extends AppCompatActivity {
                                 finish();
 
                             } else {
-                                AlertDialog.Builder dial = new AlertDialog.Builder(JoinActivity.this);
-                                dial.setTitle("Important");
-                                dial.setMessage("⚠ Sorry... Wrong code ⚠");
-                                dial.setPositiveButton("ok", null);
-                                dial.show();
+                                Toast.makeText(JoinActivity.this, "WRONG CODE", Toast.LENGTH_LONG).show();
                             }
 
                         }

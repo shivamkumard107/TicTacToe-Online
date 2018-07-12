@@ -26,12 +26,14 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     String code;
     Game game;
     boolean isHost;
+    String hostCode;
 
-    ImageView iv_counter ;
+    ImageView iv_counter ; // first box in the game iv_box1
     ImageView iv_pointer ;
+    TextView host_code;
 
 
-    ImageView iv_box1, iv_box2, iv_box3, iv_box4, iv_box5, iv_box6, iv_box7, iv_box8, iv_box9;
+    ImageView iv_box2, iv_box3, iv_box4, iv_box5, iv_box6, iv_box7, iv_box8, iv_box9;
 
 
 
@@ -41,19 +43,20 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_game__play);
 
 
-        iv_pointer = (ImageView)findViewById(R.id.iv_pointer);
+        iv_pointer = findViewById(R.id.iv_pointer);
         iv_pointer.setImageResource(R.drawable.right_pointer);
-        iv_counter = (ImageView)findViewById(R.id.iv_pt1);
-        iv_counter.setOnClickListener(this);
-        iv_box2 = (ImageView)findViewById(R.id.iv_pt2);
-        iv_box3 = (ImageView)findViewById(R.id.iv_pt3);
-        iv_box4 = (ImageView)findViewById(R.id.iv_pt4);
-        iv_box5 = (ImageView)findViewById(R.id.iv_pt5);
-        iv_box6 = (ImageView)findViewById(R.id.iv_pt6);
-        iv_box7 = (ImageView)findViewById(R.id.iv_pt7);
-        iv_box8 = (ImageView)findViewById(R.id.iv_pt8);
-        iv_box9 = (ImageView)findViewById(R.id.iv_pt9);
+        iv_counter = findViewById(R.id.iv_pt1);
 
+        iv_box2 = findViewById(R.id.iv_pt2);
+        iv_box3 = findViewById(R.id.iv_pt3);
+        iv_box4 = findViewById(R.id.iv_pt4);
+        iv_box5 = findViewById(R.id.iv_pt5);
+        iv_box6 = findViewById(R.id.iv_pt6);
+        iv_box7 = findViewById(R.id.iv_pt7);
+        iv_box8 = findViewById(R.id.iv_pt8);
+        iv_box9 = findViewById(R.id.iv_pt9);
+
+        iv_counter.setOnClickListener(this);
         iv_box2.setOnClickListener(this);
         iv_box3.setOnClickListener(this);
         iv_box4.setOnClickListener(this);
@@ -63,12 +66,13 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         iv_box8.setOnClickListener(this);
         iv_box9.setOnClickListener(this);
 
+        host_code = findViewById(R.id.tv_code);
 
-
-        isHost = getIntent().getBooleanExtra("isHost", false);
-
+        isHost = getIntent().getBooleanExtra("isHost", true);
+        hostCode = getIntent().getStringExtra("code");
 
         code = getIntent().getStringExtra("code");
+        host_code.setText(hostCode);
 //        code = "9582184794";
         databaseReference.child(code).addValueEventListener(new ValueEventListener() {
             @Override
@@ -84,6 +88,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
                     boolean awayTurn = game.away.turn;
                     iv_pointer.setVisibility(View.GONE);
                     if (isHost && hostTurn) {
+                        host_code.setText(hostCode);
                         Log.i("CODE", "1");
                         Log.i("isHost", "hostTurn") ;
                         onClickListeners();
@@ -186,9 +191,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
 
                 } else {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
-                    dialog.setTitle("Game not Connected");
-                    dialog.setMessage("Other user not joined.");
-                    dialog.setPositiveButton("ok", null);
+                    dialog.setMessage("Game not Connected");
                     dialog.show();
                 }
             }
@@ -302,7 +305,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(5)==0 && game.box.getBoxPosition().get(8)==0){
             redWon();
         }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(8)==0){
-            redWon();
+            Toast.makeText(this, "Red WonYellow Won", Toast.LENGTH_SHORT).show();
         }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(6)==0){
             redWon();
         }
@@ -443,18 +446,16 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
-    
+
     private void yellowWon(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Yellow Won");
-        dialog.setPositiveButton("ok", null);
         dialog.show();
     }
-    
+
     private void redWon(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Red Won");
-        dialog.setPositiveButton("ok", null);
         dialog.show();
     }
     @Override
