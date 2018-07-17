@@ -2,6 +2,8 @@ package com.example.shivam.tic_tac_toeonline;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,13 +30,12 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     boolean isHost;
     String hostCode;
 
-    ImageView iv_counter ; // first box in the game iv_box1
-    ImageView iv_pointer ;
+    ImageView iv_counter; // first box in the game iv_box1
+    ImageView iv_pointer;
     TextView host_code;
 
 
     ImageView iv_box2, iv_box3, iv_box4, iv_box5, iv_box6, iv_box7, iv_box8, iv_box9;
-
 
 
     @Override
@@ -90,41 +91,42 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
                     if (isHost && hostTurn) {
                         host_code.setText(hostCode);
                         Log.i("CODE", "1");
-                        Log.i("isHost", "hostTurn") ;
+                        Log.i("isHost", "hostTurn");
                         onClickListeners();
                         fillingInBox();
 
                         if (!game.box.getBoxPosition().get(0).equals(-1)) {
-                            iv_counter.setClickable(false); ;
+                            iv_counter.setClickable(false);
+                            ;
                         }
-                        if (!game.box.getBoxPosition().get(1).equals(-1)){
+                        if (!game.box.getBoxPosition().get(1).equals(-1)) {
                             iv_box2.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(2).equals(-1)){
+                        if (!game.box.getBoxPosition().get(2).equals(-1)) {
                             iv_box3.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(3).equals(-1)){
+                        if (!game.box.getBoxPosition().get(3).equals(-1)) {
                             iv_box4.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(4).equals(-1)){
+                        if (!game.box.getBoxPosition().get(4).equals(-1)) {
                             iv_box5.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(5).equals(-1)){
+                        if (!game.box.getBoxPosition().get(5).equals(-1)) {
                             iv_box6.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(6).equals(-1)){
+                        if (!game.box.getBoxPosition().get(6).equals(-1)) {
                             iv_box7.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(7).equals(-1)){
+                        if (!game.box.getBoxPosition().get(7).equals(-1)) {
                             iv_box8.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(8).equals(-1)){
+                        if (!game.box.getBoxPosition().get(8).equals(-1)) {
                             iv_box9.setClickable(false);
                         }
 
                     } else if (isHost && awayTurn) {
                         Log.i("CODE", "2");
-                        Log.i("isHost", "awayTurn") ;
+                        Log.i("isHost", "awayTurn");
                         onClickListeners();
                         fillingInBox();
                         iv_counter.setClickable(false);
@@ -138,42 +140,43 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
                         iv_box9.setClickable(false);
 
                     } else if (!isHost && awayTurn) {
-                        Log.i("! isHost", "awayTurn") ;
+                        Log.i("! isHost", "awayTurn");
                         Log.i("CODE", "3");
 
                         onClickListeners();
                         fillingInBox();
                         if (!game.box.getBoxPosition().get(0).equals(-1)) {
-                            iv_counter.setClickable(false); ;
+                            iv_counter.setClickable(false);
+                            ;
                         }
-                        if (!game.box.getBoxPosition().get(1).equals(-1)){
+                        if (!game.box.getBoxPosition().get(1).equals(-1)) {
                             iv_box2.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(2).equals(-1)){
+                        if (!game.box.getBoxPosition().get(2).equals(-1)) {
                             iv_box3.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(3).equals(-1)){
+                        if (!game.box.getBoxPosition().get(3).equals(-1)) {
                             iv_box4.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(4).equals(-1)){
+                        if (!game.box.getBoxPosition().get(4).equals(-1)) {
                             iv_box5.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(5).equals(-1)){
+                        if (!game.box.getBoxPosition().get(5).equals(-1)) {
                             iv_box6.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(6).equals(-1)){
+                        if (!game.box.getBoxPosition().get(6).equals(-1)) {
                             iv_box7.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(7).equals(-1)){
+                        if (!game.box.getBoxPosition().get(7).equals(-1)) {
                             iv_box8.setClickable(false);
                         }
-                        if (!game.box.getBoxPosition().get(8).equals(-1)){
+                        if (!game.box.getBoxPosition().get(8).equals(-1)) {
                             iv_box9.setClickable(false);
                         }
 
 
                     } else if (!isHost && hostTurn) {
-                        Log.i("! isHost", "hostTurn") ;
+                        Log.i("! isHost", "hostTurn");
                         Log.i("CODE", "4");
                         onClickListeners();
                         fillingInBox();
@@ -208,7 +211,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
 //                                int position = 0 ;
-                updateDatabase(iv_counter, 0 ) ;
+                updateDatabase(iv_counter, 0);
 //                checkWin();
             }
         });
@@ -274,43 +277,39 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
 
     public void checkWin() {
 
-        if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(1)==1 && game.box.getBoxPosition().get(2)==1){
+        if (game.box.getBoxPosition().get(0) == 1 && game.box.getBoxPosition().get(1) == 1 && game.box.getBoxPosition().get(2) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(3)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(5)==1){
+        } else if (game.box.getBoxPosition().get(3) == 1 && game.box.getBoxPosition().get(4) == 1 && game.box.getBoxPosition().get(5) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(6)==1 && game.box.getBoxPosition().get(7)==1 && game.box.getBoxPosition().get(8)==1){
+        } else if (game.box.getBoxPosition().get(6) == 1 && game.box.getBoxPosition().get(7) == 1 && game.box.getBoxPosition().get(8) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(3)==1 && game.box.getBoxPosition().get(6)==1){
+        } else if (game.box.getBoxPosition().get(0) == 1 && game.box.getBoxPosition().get(3) == 1 && game.box.getBoxPosition().get(6) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(1)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(7)==1){
+        } else if (game.box.getBoxPosition().get(1) == 1 && game.box.getBoxPosition().get(4) == 1 && game.box.getBoxPosition().get(7) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(2)==1 && game.box.getBoxPosition().get(5)==1 && game.box.getBoxPosition().get(8)==1){
+        } else if (game.box.getBoxPosition().get(2) == 1 && game.box.getBoxPosition().get(5) == 1 && game.box.getBoxPosition().get(8) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(0)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(8)==1){
+        } else if (game.box.getBoxPosition().get(0) == 1 && game.box.getBoxPosition().get(4) == 1 && game.box.getBoxPosition().get(8) == 1) {
             yellowWon();
-        }else if (game.box.getBoxPosition().get(2)==1 && game.box.getBoxPosition().get(4)==1 && game.box.getBoxPosition().get(6)==1){
+        } else if (game.box.getBoxPosition().get(2) == 1 && game.box.getBoxPosition().get(4) == 1 && game.box.getBoxPosition().get(6) == 1) {
             yellowWon();
-        }
-
-        else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(1)==0 && game.box.getBoxPosition().get(2)==0){
+        } else if (game.box.getBoxPosition().get(0) == 0 && game.box.getBoxPosition().get(1) == 0 && game.box.getBoxPosition().get(2) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(3)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(5)==0){
+        } else if (game.box.getBoxPosition().get(3) == 0 && game.box.getBoxPosition().get(4) == 0 && game.box.getBoxPosition().get(5) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(6)==0 && game.box.getBoxPosition().get(7)==0 && game.box.getBoxPosition().get(8)==0){
+        } else if (game.box.getBoxPosition().get(6) == 0 && game.box.getBoxPosition().get(7) == 0 && game.box.getBoxPosition().get(8) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(3)==0 && game.box.getBoxPosition().get(6)==0){
+        } else if (game.box.getBoxPosition().get(0) == 0 && game.box.getBoxPosition().get(3) == 0 && game.box.getBoxPosition().get(6) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(1)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(7)==0){
+        } else if (game.box.getBoxPosition().get(1) == 0 && game.box.getBoxPosition().get(4) == 0 && game.box.getBoxPosition().get(7) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(5)==0 && game.box.getBoxPosition().get(8)==0){
+        } else if (game.box.getBoxPosition().get(2) == 0 && game.box.getBoxPosition().get(5) == 0 && game.box.getBoxPosition().get(8) == 0) {
             redWon();
-        }else if (game.box.getBoxPosition().get(0)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(8)==0){
-            Toast.makeText(this, "Red WonYellow Won", Toast.LENGTH_SHORT).show();
-        }else if (game.box.getBoxPosition().get(2)==0 && game.box.getBoxPosition().get(4)==0 && game.box.getBoxPosition().get(6)==0){
+        } else if (game.box.getBoxPosition().get(0) == 0 && game.box.getBoxPosition().get(4) == 0 && game.box.getBoxPosition().get(8) == 0) {
             redWon();
-        }
-
-        else if(game.box.getBoxPosition().get(0) != -1 &&
+        } else if (game.box.getBoxPosition().get(2) == 0 && game.box.getBoxPosition().get(4) == 0 && game.box.getBoxPosition().get(6) == 0) {
+            redWon();
+        } else if (game.box.getBoxPosition().get(0) != -1 &&
                 game.box.getBoxPosition().get(1) != -1 &&
                 game.box.getBoxPosition().get(2) != -1 &&
                 game.box.getBoxPosition().get(3) != -1 &&
@@ -318,89 +317,98 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
                 game.box.getBoxPosition().get(5) != -1 &&
                 game.box.getBoxPosition().get(6) != -1 &&
                 game.box.getBoxPosition().get(7) != -1 &&
-                game.box.getBoxPosition().get(8) != -1){
+                game.box.getBoxPosition().get(8) != -1) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+            dialog.setMessage("It's a Draw");
+            dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
+            dialog.show();
 
-            Toast.makeText(this, "It's a DRAW !!!", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void fillingInBox() {
-        if (game.box.boxPosition.get(0).equals(1)){
+        if (game.box.boxPosition.get(0).equals(1)) {
 
             iv_counter.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(0).equals(0)){
+        } else if (game.box.boxPosition.get(0).equals(0)) {
             iv_counter.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(1).equals(1)){
+        if (game.box.boxPosition.get(1).equals(1)) {
 
             iv_box2.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(1).equals(0)){
+        } else if (game.box.boxPosition.get(1).equals(0)) {
             iv_box2.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(2).equals(1)){
+        if (game.box.boxPosition.get(2).equals(1)) {
 
             iv_box3.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(2).equals(0)){
+        } else if (game.box.boxPosition.get(2).equals(0)) {
             iv_box3.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(3).equals(1)){
+        if (game.box.boxPosition.get(3).equals(1)) {
             iv_box4.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(3).equals(0)){
+        } else if (game.box.boxPosition.get(3).equals(0)) {
             iv_box4.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(4).equals(1)){
+        if (game.box.boxPosition.get(4).equals(1)) {
 
             iv_box5.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        }  else if (game.box.boxPosition.get(4).equals(0)){
+        } else if (game.box.boxPosition.get(4).equals(0)) {
             iv_box5.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(5).equals(1)){
+        if (game.box.boxPosition.get(5).equals(1)) {
 
             iv_box6.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(5).equals(0)){
+        } else if (game.box.boxPosition.get(5).equals(0)) {
             iv_box6.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(6).equals(1)){
+        if (game.box.boxPosition.get(6).equals(1)) {
 
             iv_box7.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(6).equals(0)){
+        } else if (game.box.boxPosition.get(6).equals(0)) {
             iv_box7.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(7).equals(1)){
+        if (game.box.boxPosition.get(7).equals(1)) {
             iv_box8.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(7).equals(0)){
+        } else if (game.box.boxPosition.get(7).equals(0)) {
             iv_box8.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
-        if (game.box.boxPosition.get(8).equals(1)){
+        if (game.box.boxPosition.get(8).equals(1)) {
 
             iv_box9.setImageResource(R.drawable.yellow);
 //            iv_pointer.setImageResource(R.drawable.left_pointer);
 
-        } else if (game.box.boxPosition.get(8).equals(0)){
+        } else if (game.box.boxPosition.get(8).equals(0)) {
             iv_box9.setImageResource(R.drawable.red);
 //            iv_pointer.setImageResource(R.drawable.right_pointer);
         }
@@ -412,55 +420,69 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         checkWin();
     }
 
-    public void updateDatabase(ImageView view, int position){
+    public void updateDatabase(ImageView view, int position) {
 
 
-            if (isHost) {
-                if (game.box.getBoxPosition().get(position).equals(-1)) {
-                    view.setImageResource(R.drawable.yellow);
-                }
+        if (isHost) {
+            if (game.box.getBoxPosition().get(position).equals(-1)) {
+                view.setImageResource(R.drawable.yellow);
+            }
 
 //                iv_pointer.setImageResource(R.drawable.right_pointer);
-                game.box.boxPosition.set(position, 1);
-                game.box.setTakenType(true);  // true for yellow. host always take yellow .
-                Log.i("CODE", "6");
-                game.lastMove = 100;
-                game.host.setTurn(false);
-                game.away.setTurn(true);
-                databaseReference.child(code).setValue(game);
+            game.box.boxPosition.set(position, 1);
+            game.box.setTakenType(true);  // true for yellow. host always take yellow .
+            Log.i("CODE", "6");
+            game.lastMove = 100;
+            game.host.setTurn(false);
+            game.away.setTurn(true);
+            databaseReference.child(code).setValue(game);
 
-            } else {
-                if (game.box.getBoxPosition().get(position).equals(-1)) {
-                    view.setImageResource(R.drawable.red);
-                }
+        } else {
+            if (game.box.getBoxPosition().get(position).equals(-1)) {
+                view.setImageResource(R.drawable.red);
+            }
 //                iv_pointer.setImageResource(R.drawable.left_pointer);
-                game.box.boxPosition.set(position, 0);
-                game.box.setTakenType(false);  // false for red. joiner alwaays take red
-                Log.i("CODE", "7");
+            game.box.boxPosition.set(position, 0);
+            game.box.setTakenType(false);  // false for red. joiner alwaays take red
+            Log.i("CODE", "7");
 
-                game.lastMove = 9;
-                game.host.setTurn(true);
-                game.away.setTurn(false);
-                databaseReference.child(code).setValue(game);
+            game.lastMove = 9;
+            game.host.setTurn(true);
+            game.away.setTurn(false);
+            databaseReference.child(code).setValue(game);
 
         }
 
     }
 
-    private void yellowWon(){
+    private void yellowWon() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Yellow Won");
+        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
         dialog.show();
     }
 
-    private void redWon(){
+    private void redWon() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
         dialog.setMessage("Red Won");
+        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
         dialog.show();
     }
+
     @Override
     public void onClick(View view) {
-
 
 
     }
