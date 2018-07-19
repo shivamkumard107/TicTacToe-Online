@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -322,6 +325,7 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
             dialog.setMessage("It's a Draw");
             dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
+                    finish();
                     Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -456,29 +460,84 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void yellowWon() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
-        dialog.setMessage("Yellow Won");
-        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        final Dialog dialog = new Dialog(Game_PlayActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_match_result);
+
+        TextView winner;
+        ImageView win;
+        Button play;
+        winner = dialog.findViewById(R.id.tv_loser);
+        win = dialog.findViewById(R.id.iv_loser);
+        play = dialog.findViewById(R.id.bt_try_again);
+        if (isHost) {
+            // host has yellow always
+            winner.setVisibility(View.VISIBLE);
+            win.setVisibility(View.VISIBLE);
+        }
+
+
+
         dialog.show();
+
+
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+//        dialog.setMessage("Yellow Won");
+//        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//                Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//            }
+//        });
+//        dialog.show();
     }
 
     private void redWon() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
-        dialog.setMessage("Red Won");
-        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
+
+        final Dialog dialog = new Dialog(Game_PlayActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_match_result);
+        TextView winner, loser;
+        ImageView win, lose;
+        Button play;
+        loser = dialog.findViewById(R.id.tv_loser);
+        lose = dialog.findViewById(R.id.iv_loser);
+        play = dialog.findViewById(R.id.bt_try_again);
+        if (isHost) {
+            // host has yellow always
+            loser.setVisibility(View.VISIBLE);
+            lose.setVisibility(View.VISIBLE);
+        }
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
                 Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
+// TODO CORRECT CODE : https://stackoverflow.com/questions/10710888/add-positive-button-to-dialog ,
+// todo https://stackoverflow.com/questions/6276501/how-to-put-an-image-in-an-alertdialog-android/6276592#6276592
+
         dialog.show();
+
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(Game_PlayActivity.this);
+//        dialog.setMessage("Red Won");
+//        dialog.setPositiveButton("Play Again !?!", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//                Intent intent = new Intent(Game_PlayActivity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//            }
+//        });
+//        dialog.show();
     }
 
     @Override

@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yellow Won"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_margin="10sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_loser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_margin="10sp"
+        android:text="Red Won"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/iv_winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/winner"
+        android:cropToPadding="true"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/iv_loser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lost"
+        android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/bt_try_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/play_again"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
