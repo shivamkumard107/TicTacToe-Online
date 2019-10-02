@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Game_PlayActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,9 +37,14 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     boolean isHost;
     String hostCode;
 
+    LinearLayout timer;
+    Timer t;
+
+    int minutes=0,seconds=0;
+
     ImageView iv_counter; // first box in the game iv_box1
     ImageView iv_pointer;
-    TextView host_code;
+    TextView host_code,min,sec;
 
 
     ImageView iv_box2, iv_box3, iv_box4, iv_box5, iv_box6, iv_box7, iv_box8, iv_box9;
@@ -45,6 +54,8 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game__play);
+
+        minutes=seconds=0;
 
 
         iv_pointer = findViewById(R.id.iv_pointer);
@@ -70,13 +81,18 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
         iv_box8.setOnClickListener(this);
         iv_box9.setOnClickListener(this);
 
+        timer = findViewById(R.id.timer);
         host_code = findViewById(R.id.tv_code);
+        min = findViewById(R.id.minutes);
+        sec = findViewById(R.id.seconds);
 
         isHost = getIntent().getBooleanExtra("isHost", true);
         hostCode = getIntent().getStringExtra("code");
 
         code = getIntent().getStringExtra("code");
         host_code.setText(hostCode);
+        // making the code readble by making it bold
+        host_code.setTypeface(null, Typeface.BOLD);
 //        code = "9582184794";
         databaseReference.child(code).addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,6 +103,56 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
 
                 Log.i("CODE", "5");
                 if (game != null && game.isStarted) {
+
+                    // creating a timer to keep track of who takes min time to win
+                    //Declare the timer
+                    t = new Timer();
+
+                    //Set the schedule function and rate
+                    // timer runs
+                    t.scheduleAtFixedRate(new TimerTask() {
+
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    min.setText(String.valueOf(minutes));
+                                    if(seconds<10)
+                                        sec.setText("0"+ seconds);
+                                    else
+                                        sec.setText(String.valueOf(seconds));
+                                    seconds += 1;
+
+                                    if(seconds == 59 )
+                                    {
+                                        seconds=0;
+                                        minutes+=1;
+                                        min.setText(String.valueOf(minutes));
+
+                                        if(seconds<10)
+                                            sec.setText("0"+ seconds);
+                                        else
+                                            sec.setText(String.valueOf(seconds));
+
+                                        seconds += 1;
+
+                                    }
+
+
+
+                                }
+
+                            });
+                        }
+
+                    }, 0, 1000);
+
+
+
+
+
 
                     boolean hostTurn = game.host.turn;
                     boolean awayTurn = game.away.turn;
@@ -460,6 +526,9 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void yellowWon() {
+
+        t.cancel();
+        t.purge();
         final Dialog dialog = new Dialog(Game_PlayActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -496,6 +565,9 @@ public class Game_PlayActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void redWon() {
+
+        t.cancel();
+        t.purge();
 
         final Dialog dialog = new Dialog(Game_PlayActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

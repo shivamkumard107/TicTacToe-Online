@@ -44,8 +44,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:visibility="gone"
-            android:src="@drawable/right_pointer" />
+            android:src="@drawable/right_pointer"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_red_turn"
@@ -61,17 +61,17 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="45dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:text="RED"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
             <ImageView
                 android:layout_width="127dp"
                 android:layout_height="30dp"
+                android:layout_below="@+id/tv_red_turn"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/tv_red_turn"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/red" />
         </LinearLayout>
@@ -98,8 +98,7 @@
                 android:layout_height="90dp"
 
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                />
+                android:layout_marginTop="15dp" />
 
             <ImageView
                 android:id="@+id/iv_pt2"
@@ -178,17 +177,65 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/gl_game"
             android:layout_centerHorizontal="true"
-            android:text="Enter this code in joiner phone"
             android:layout_marginBottom="10dp"
-            />
+            android:text="Enter this code in Joiner (Away) Phone" />
+
         <TextView
             android:id="@+id/tv_code"
-            android:text="ERROR. 404"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_host_devID"
             android:layout_centerHorizontal="true"
-            />
+            android:text="ERROR. 404" />
+
+        <TextView
+            android:id="@+id/timetv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_code"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Time" />
+
+        <LinearLayout
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/timetv"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text=":"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
