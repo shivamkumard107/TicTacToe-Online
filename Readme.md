@@ -1,7 +1,8 @@
 # TicTacToe-Online
 
-Replace google-services.json with your own google-services.json
-to do that follow the steps
+### How to run
+
+Replace google-services.json with your own google-services.json to do that follow the steps:
 1. go to https://console.firebase.google.com
 2. add your project in the firebase.
 3. register your app in the project.
