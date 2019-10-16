@@ -7,3 +7,5 @@ to do that follow the steps
 3. register your app in the project.
 4. download google-services.json file.
 5. place it with your google-services.json in the /app directory. 
+
+And you're done!
